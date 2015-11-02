@@ -1,7 +1,7 @@
 # django-production
 Dockerfile that creates a Django (Python 2.7.x) production environment on Ubuntu Trusty, running on uWSGI and nginx.
 
-# Usage
+# Example Usage
 
 To deploy your Django app, copy the project into a directory and ensure it has a structure similar to that shown below. In the root of the new directory, copy your pip requirements into "requirements.txt". In the same directory, you will then need to create a "start.sh" file with the parameters of your project defined (see example below directory structure).
 
