@@ -4,8 +4,11 @@ Dockerfile that creates a Django (Python 2.7.x) production environment on Ubuntu
 # Usage
 
 .
+
 ├── example-project
+
 │   ├── example_app
+
 │   │   ├── __init__.py
 │   │   ├── __init__.pyc
 │   │   ├── settings.py
