@@ -77,6 +77,19 @@ echo "socket          = /.uwsgi_config/$WORKING_DIRECTORY.sock" >> $UWSGI_INI_FI
 echo "chmod-socket    = 666" >> $UWSGI_INI_FILE
 echo "vacuum          = true" >> $UWSGI_INI_FILE
 
+# Generate log-rotate rules
+
+LOGROTATE_FILE="/etc/logrotate.d/nginx"
+
+echo "/var/log/nginx/*.log {" >> $LOGROTATE_FILE
+echo "	size 10m" >> $LOGROTATE_FILE
+echo "	copytruncate" >> $LOGROTATE_FILE
+echo "	create 640 root root" >> $LOGROTATE_FILE
+echo "	su root root" >> $LOGROTATE_FILE
+echo "  rotate 10" >> $LOGROTATE_FILE
+echo "  compress" >> $LOGROTATE_FILE
+echo "}" >> $LOGROTATE_FILE
+
 # Remove default config
 rm -f /etc/nginx/sites-enabled/default
 
