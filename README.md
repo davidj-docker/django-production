@@ -10,13 +10,9 @@ To deploy your Django app, copy the project into a directory and ensure it has a
 ├── example-project
 │   ├── example_app
 │   │   ├── __init__.py
-│   │   ├── __init__.pyc
 │   │   ├── settings.py
-│   │   ├── settings.pyc
 │   │   ├── urls.py
-│   │   ├── urls.pyc
 │   │   ├── wsgi.py
-│   │   └── wsgi.pyc
 │   ├── manage.py
 │   ├── ExampleApp
 │   │   ├── admin.py
