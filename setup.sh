@@ -114,9 +114,8 @@ service nginx restart
 
 # Generate log-rotate rules
 
-LOGROTATE_FILE="/etc/logrotate.d/nginx"
+LOGROTATE_FILE="/etc/logrotate.d/nginx_django"
 
-rm -f $LOGROTATE_FILE
 echo "/var/log/nginx/*.log {" >> $LOGROTATE_FILE
 echo "  size 10m" >> $LOGROTATE_FILE
 echo "  copytruncate" >> $LOGROTATE_FILE
