@@ -117,7 +117,7 @@ service nginx restart
 LOGROTATE_FILE="/etc/logrotate.d/nginx_django"
 
 echo "/var/log/nginx/*.log {" >> $LOGROTATE_FILE
-echo "  size 10m" >> $LOGROTATE_FILE
+echo "  size 10MB" >> $LOGROTATE_FILE
 echo "  copytruncate" >> $LOGROTATE_FILE
 echo "  create 640 root root" >> $LOGROTATE_FILE
 echo "  su root root" >> $LOGROTATE_FILE
