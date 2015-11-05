@@ -39,7 +39,7 @@ To deploy your Django app, copy the project into a directory and ensure it has a
 django-nginx-setup --working-directory example-project --static-directory static --static-alias /static --wsgi-module example_app.wsgi
 ```
 
-# To run the container, use the below command structure (requires mounting the directory you created to the container at /app):
+# Running the container
 
 ```bash
 docker run -d -p 8125:80 -v /path/to/your/directory:/app davidj/django-production
