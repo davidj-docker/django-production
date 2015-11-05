@@ -77,19 +77,6 @@ echo "socket          = /.uwsgi_config/$WORKING_DIRECTORY.sock" >> $UWSGI_INI_FI
 echo "chmod-socket    = 666" >> $UWSGI_INI_FILE
 echo "vacuum          = true" >> $UWSGI_INI_FILE
 
-# Generate log-rotate rules
-
-LOGROTATE_FILE="/etc/logrotate.d/nginx"
-
-echo "/var/log/nginx/*.log {" >> $LOGROTATE_FILE
-echo "	size 10m" >> $LOGROTATE_FILE
-echo "	copytruncate" >> $LOGROTATE_FILE
-echo "	create 640 root root" >> $LOGROTATE_FILE
-echo "	su root root" >> $LOGROTATE_FILE
-echo "  rotate 10" >> $LOGROTATE_FILE
-echo "  compress" >> $LOGROTATE_FILE
-echo "}" >> $LOGROTATE_FILE
-
 # Remove default config
 rm -f /etc/nginx/sites-enabled/default
 
@@ -103,7 +90,6 @@ echo "server {" >> $NGINX_CONFIG_FILE
 echo "    listen      80;" >> $NGINX_CONFIG_FILE
 echo "    server_name 0.0.0.0;" >> $NGINX_CONFIG_FILE
 echo "    charset     utf-8;" >> $NGINX_CONFIG_FILE
-echo "    error_log /var/log/nginx/error.log info;" >> $NGINX_CONFIG_FILE
 echo "    client_max_body_size 75M;" >> $NGINX_CONFIG_FILE
 echo "    client_header_buffer_size 64k;" >> $NGINX_CONFIG_FILE
 echo "    large_client_header_buffers 4 64k;" >> $NGINX_CONFIG_FILE
@@ -125,6 +111,20 @@ echo "command = /usr/local/bin/uwsgi --ini $UWSGI_INI_FILE" >> $SUPERVISOR_CONFI
 
 # Restart nginx
 service nginx restart
+
+# Generate log-rotate rules
+
+LOGROTATE_FILE="/etc/logrotate.d/nginx"
+
+rm -f $LOGROTATE_FILE
+echo "/var/log/nginx/*.log {" >> $LOGROTATE_FILE
+echo "  size 10m" >> $LOGROTATE_FILE
+echo "  copytruncate" >> $LOGROTATE_FILE
+echo "  create 640 root root" >> $LOGROTATE_FILE
+echo "  su root root" >> $LOGROTATE_FILE
+echo "  rotate 10" >> $LOGROTATE_FILE
+echo "  compress" >> $LOGROTATE_FILE
+echo "}" >> $LOGROTATE_FILE
 
 # Start supervisord
 /usr/bin/supervisord
