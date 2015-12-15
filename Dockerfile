@@ -15,7 +15,7 @@ RUN sed -i 's/archive.ubuntu.com/us-east-1.ec2.archive.ubuntu.com/' /etc/apt/sou
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
 # Install dependencies for building python packages (add any additional here if necessary)
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential python python-dev libmysqlclient-dev libssl-dev libffi-dev python-setuptools python-pip nginx supervisor
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential python python-dev libmysqlclient-dev libssl-dev libffi-dev python-setuptools python-pip qt5-default libqt5webkit5-dev python-lxml xvfb nginx supervisor
 
 # Install UWSGI and virtualenv globally
 RUN pip install uwsgi
