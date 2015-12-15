@@ -109,6 +109,9 @@ echo "command = /usr/local/bin/uwsgi --ini $UWSGI_INI_FILE" >> $SUPERVISOR_CONFI
 # Install python requirements into virtualenv
 /bin/bash -c "source /.virtualenv/venv/bin/activate && pip install -r /app/requirements.txt"
 
+# Symlink admin static files
+ln -s /.virtualenv/venv/lib/python2.7/site-packages/django/contrib/admin/static/admin /app/$WORKING_DIRECTORY/$STATIC_DIRECTORY/admin
+
 # Restart nginx
 service nginx restart
 
