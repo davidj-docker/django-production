@@ -104,7 +104,7 @@ rm -f $SUPERVISOR_CONFIG_FILE
 echo "[supervisord]" >> $SUPERVISOR_CONFIG_FILE
 echo "nodaemon=true" >> $SUPERVISOR_CONFIG_FILE
 echo "[program:uwsgi]" >> $SUPERVISOR_CONFIG_FILE
-echo "command = /usr/local/bin/uwsgi --ini $UWSGI_INI_FILE" >> $SUPERVISOR_CONFIG_FILE
+echo "command = /usr/local/bin/uwsgi --enable-threads --ini $UWSGI_INI_FILE" >> $SUPERVISOR_CONFIG_FILE
 
 # Install python requirements into virtualenv
 /bin/bash -c "source /.virtualenv/venv/bin/activate && pip install -r /app/requirements.txt"
