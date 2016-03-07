@@ -94,7 +94,7 @@ echo "    client_max_body_size 75M;" >> $NGINX_CONFIG_FILE
 echo "    client_header_buffer_size 64k;" >> $NGINX_CONFIG_FILE
 echo "    large_client_header_buffers 4 64k;" >> $NGINX_CONFIG_FILE
 echo "    location $STATIC_ALIAS { alias /app/$WORKING_DIRECTORY/$STATIC_DIRECTORY; }" >> $NGINX_CONFIG_FILE
-echo "    location / { uwsgi_pass django; include $UWSGI_PARAMS_FILE; }" >> $NGINX_CONFIG_FILE
+echo "    location / { uwsgi_read_timeout 300s; uwsgi_send_timeout 300s; uwsgi_pass django; include $UWSGI_PARAMS_FILE; }" >> $NGINX_CONFIG_FILE
 echo "}" >> $NGINX_CONFIG_FILE
 
 # Generate supervisord config
