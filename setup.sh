@@ -107,9 +107,12 @@ echo "[program:uwsgi]" >> $SUPERVISOR_CONFIG_FILE
 echo "command = /usr/local/bin/uwsgi --enable-threads --ini $UWSGI_INI_FILE" >> $SUPERVISOR_CONFIG_FILE
 
 # Install python requirements into virtualenv
-mkdir -p /app/packages
-/bin/bash -c "source /.virtualenv/venv/bin/activate && pip install --download /app/packages -r /app/requirements.txt"
-/bin/bash -c "source /.virtualenv/venv/bin/activate && pip install --no-index --find-links=/app/packages -r /app/requirements.txt"
+/bin/bash -c "source /.virtualenv/venv/bin/activate && pip install -r /app/requirements.txt"
+
+if [ -e /app/requirements.txt ]
+then
+	/bin/bash -c "source /.virtualenv/venv/bin/activate && pip install -r /app/requirements2.txt"
+fi
 
 # Symlink admin static files
 /bin/bash -c "ln -s /.virtualenv/venv/lib/python2.7/site-packages/django/contrib/admin/static/admin /app/$WORKING_DIRECTORY/$STATIC_DIRECTORY/admin"
